@@ -303,7 +303,7 @@
         <div class="contact-heading">Travaillons<br><span>ensemble.</span></div>
         <div class="contact-row">
           <span class="c-label">Email</span>
-          <a href="/cdn-cgi/l/email-protection#70111c15085e00151c1100021104161c1f021530171d11191c5e131f1d" class="c-val"><span class="__cf_email__" data-cfemail="53323f362b7d23363f3223213227353f3c213613343e323a3f7d303c3e">[email&#160;protected]</span></a>
+          <a href="#" id="email-link" class="c-val" id="email-link">chargement...</a>
         </div>
         <div class="contact-row">
           <span class="c-label">GitHub</span>
@@ -328,5 +328,11 @@
   <span>© 2025 — Tous droits réservés</span>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js" defer></script></body>
+<script>
+  var u='alex.pelapratflore';var d='gmail.com';
+  var el=document.getElementById('email-link');
+  el.href='mailto:'+u+'@'+d;
+  el.textContent=u+'@'+d;
+</script>
+</body>
 </html>
