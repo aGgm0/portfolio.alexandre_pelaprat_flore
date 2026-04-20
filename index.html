@@ -1,363 +1,332 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Alexandre Pelaprat Flore - Développeur Web | Portfolio professionnel">
-    <title>Alexandre Pelaprat Flore | Dev Portfolio</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Alexandre Pelaprat Flore — Développeur Web Full-Stack | Portfolio">
+  <title>Alexandre Pelaprat Flore — Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;700;900&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0c1526;
+      --fg: #e4ecf8;
+      --accent: #4b86ff;
+      --border: #e4ecf8;
+      --ff-d: 'Barlow Condensed', sans-serif;
+      --ff-m: 'IBM Plex Mono', monospace;
+    }
+
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--ff-m); background: var(--bg); color: var(--fg); overflow-x: hidden; }
+    a { color: inherit; text-decoration: none; }
+    img { display: block; }
+
+    /* ─── NAV ─── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: var(--bg); border-bottom: 2px solid var(--border);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 48px; height: 56px;
+      font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em;
+    }
+    .nav-logo { font-family: var(--ff-d); font-weight: 900; font-size: 18px; letter-spacing: 0.04em; }
+    .nav-links { display:flex; gap:28px; list-style:none; }
+    .nav-links a { opacity:0.55; transition:opacity .15s; }
+    .nav-links a:hover { opacity:1; }
+    .nav-actions { display:flex; gap:12px; }
+    .nav-btn {
+      border: 1.5px solid var(--border); padding:6px 14px;
+      font-size:10px; font-family: var(--ff-m); letter-spacing:.08em; cursor:pointer;
+      background:transparent; color:var(--fg); text-transform:uppercase;
+      transition: background .15s, color .15s;
+    }
+    .nav-btn:hover { background: var(--fg); color: var(--bg); }
+
+    /* ─── SECTIONS ─── */
+    section { border-top: 2px solid var(--border); }
+    .wrap { max-width: 1320px; margin: 0 auto; padding: 0 48px; }
+    .section-head { display:flex; align-items:baseline; gap:20px; margin-bottom:48px; padding-top:72px; }
+    .s-num { font-family:var(--ff-d); font-size:11px; letter-spacing:.15em; text-transform:uppercase; opacity:.35; }
+    .s-title { font-family:var(--ff-d); font-size:clamp(40px,5vw,72px); font-weight:900; text-transform:uppercase; line-height:1; letter-spacing:-.01em; }
+
+    /* ─── HERO ─── */
+    .hero {
+      min-height: 60vh; display: flex; flex-direction: column;
+      justify-content: center; padding: 64px 48px; position: relative;
+    }
+    .hero::after {
+      content: '2025'; position: absolute; bottom: 48px; right: 48px;
+      font-family: var(--ff-d); font-size: 11px; letter-spacing: .15em;
+      text-transform: uppercase; opacity: .2;
+    }
+    .hero-pre {
+      font-size: 11px; letter-spacing: .18em; text-transform: uppercase; opacity: .35; margin-bottom: 24px;
+    }
+    .hero-name {
+      font-family: var(--ff-d); font-weight: 900;
+      font-size: clamp(60px, 9.5vw, 136px); line-height: .88;
+      text-transform: uppercase; letter-spacing: -.02em;
+    }
+    .hero-rule { width: 100%; height: 2px; background: var(--border); margin: 40px 0; }
+    .hero-bottom { display: flex; justify-content: space-between; align-items: flex-end; }
+    .hero-status { font-size: 11px; letter-spacing: .1em; text-transform: uppercase; opacity: .45; margin-bottom: 16px; }
+    .hero-cta {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-size: 11px; letter-spacing: .1em; text-transform: uppercase;
+      color: var(--accent); border: 1.5px solid var(--accent); padding: 12px 22px;
+      transition: background .15s, color .15s;
+    }
+    .hero-cta:hover { background: var(--accent); color: var(--bg); }
+
+    /* ─── ABOUT ─── */
+    .about { padding-bottom: 80px; }
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: start; }
+    .about-text p { font-size: 14px; line-height: 1.85; opacity: .7; margin-bottom: 16px; }
+    .about-text strong { opacity: 1; color: var(--fg); }
+    .about-facts { display: flex; flex-direction: column; }
+    .about-fact { display:flex; justify-content:space-between; align-items:baseline; padding:16px 0; border-bottom:1px solid; border-color:color-mix(in srgb,var(--border) 20%,transparent); }
+    .about-fact:first-child { border-top:1px solid; border-top-color:color-mix(in srgb,var(--border) 20%,transparent); }
+    .fact-label { font-size:10px; text-transform:uppercase; letter-spacing:.1em; opacity:.45; }
+    .fact-value { font-family:var(--ff-d); font-weight:700; font-size:15px; text-transform:uppercase; }
+
+    /* ─── PROJECTS ─── */
+    .projects { padding-bottom: 80px; }
+    .project-item {
+      display: grid; grid-template-columns: 56px 1fr;
+      gap: 32px; align-items: start; padding: 36px 0;
+      border-bottom: 1px solid; border-color:color-mix(in srgb,var(--border) 20%,transparent);
+    }
+    .project-item:first-child { border-top:1px solid; border-top-color:color-mix(in srgb,var(--border) 20%,transparent); }
+    .proj-num { font-family:var(--ff-d); font-size:40px; font-weight:900; color:var(--accent); line-height:1; opacity:.5; }
+    .proj-title { font-family:var(--ff-d); font-size:28px; font-weight:700; text-transform:uppercase; letter-spacing:-.01em; margin-bottom:8px; }
+    .proj-desc { font-size:12px; line-height:1.75; opacity:.6; margin-bottom:14px; }
+    .proj-tags { display:flex; flex-wrap:wrap; gap:6px; margin-bottom:16px; }
+    .tag { font-size:9px; text-transform:uppercase; letter-spacing:.1em; padding:4px 10px; border:1px solid; border-color:color-mix(in srgb,var(--border) 35%,transparent); opacity:.7; }
+    .proj-link { font-size:10px; text-transform:uppercase; letter-spacing:.1em; color:var(--accent); display:inline-flex; align-items:center; gap:6px; border-bottom:1px solid var(--accent); padding-bottom:2px; transition:gap .15s; }
+    .proj-link:hover { gap:12px; }
+
+    /* ─── SKILLS ─── */
+    .skills { padding-bottom: 80px; }
+    .skills-grid { display:flex; flex-wrap:wrap; gap:0; }
+    .skill { font-size:11px; text-transform:uppercase; letter-spacing:.08em; padding:12px 20px; border:1px solid; border-color:color-mix(in srgb,var(--border) 25%,transparent); margin:-1px 0 0 -1px; transition:background .15s, color .15s, opacity .15s; opacity:.7; }
+    .skill:hover { opacity:1; background:var(--fg); color:var(--bg); }
+
+    /* ─── CONTACT ─── */
+    .contact { padding-bottom: 100px; }
+    .contact-grid { display:grid; grid-template-columns:1fr 1fr; gap:64px; align-items:start; }
+    .contact-heading { font-family:var(--ff-d); font-size:clamp(48px,7vw,88px); font-weight:900; text-transform:uppercase; line-height:.9; letter-spacing:-.02em; margin-bottom:40px; }
+    .contact-heading span { color:var(--accent); }
+    .contact-row { display:flex; align-items:center; gap:20px; padding:16px 0; border-bottom:1px solid; border-color:color-mix(in srgb,var(--border) 20%,transparent); font-size:13px; }
+    .contact-row:first-child { border-top:1px solid; border-top-color:color-mix(in srgb,var(--border) 20%,transparent); }
+    .c-label { font-size:10px; text-transform:uppercase; letter-spacing:.1em; opacity:.4; min-width:72px; }
+    .c-val { opacity:.8; transition:opacity .15s; }
+    .c-val:hover { opacity:1; }
+    .cv-box { border:2px solid var(--border); padding:40px; }
+    .cv-box-title { font-family:var(--ff-d); font-size:22px; font-weight:900; text-transform:uppercase; letter-spacing:.02em; margin-bottom:12px; }
+    .cv-desc { font-size:12px; line-height:1.75; opacity:.6; margin-bottom:28px; }
+    .cv-btn { display:inline-flex; align-items:center; gap:12px; background:var(--fg); color:var(--bg); padding:14px 28px; font-size:11px; font-family:var(--ff-m); text-transform:uppercase; letter-spacing:.1em; transition:opacity .15s; }
+    .cv-btn:hover { opacity:.82; }
+
+    /* ─── FOOTER ─── */
+    footer { border-top:2px solid var(--border); padding:24px 48px; display:flex; justify-content:space-between; align-items:center; font-size:10px; letter-spacing:.08em; text-transform:uppercase; opacity:.4; }
+
+    /* ─── RESPONSIVE ─── */
+    @media(max-width:768px){
+      nav { padding:0 24px; flex-wrap:wrap; height:auto; padding-top:12px; padding-bottom:12px; gap:12px; }
+      .nav-links { order:3; width:100%; justify-content:center; }
+      .wrap { padding:0 24px; }
+      .hero { padding:48px 24px; }
+      .about-grid { grid-template-columns:1fr; }
+      .contact-grid { grid-template-columns:1fr; }
+      footer { padding:20px 24px; flex-direction:column; gap:8px; text-align:center; }
+    }
+  </style>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="nav">
-        <div class="nav-logo">
-            <span class="terminal-prompt">~/</span>
-            <span class="logo-text">APF</span>
+
+<nav>
+  <div class="nav-logo">APF</div>
+  <ul class="nav-links">
+    <li><a href="#about">À propos</a></li>
+    <li><a href="#projects">Projets</a></li>
+    <li><a href="#skills">Compétences</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <div class="nav-actions">
+    <a href="https://github.com/aGgm0" target="_blank" class="nav-btn">GitHub ↗</a>
+    <a href="https://www.linkedin.com/in/alexandre-pelaprat-flore/" target="_blank" class="nav-btn">LinkedIn ↗</a>
+  </div>
+</nav>
+
+<section class="hero" id="top">
+  <div class="hero-pre">Alexandre Pelaprat Flore — Portfolio 2025</div>
+  <div class="hero-name">Développeur<br>Web / Full-Stack</div>
+  <div class="hero-rule"></div>
+  <div class="hero-bottom">
+    <div></div>
+    <div style="text-align:right">
+      <div class="hero-status">En recherche d'alternance</div>
+      <a href="#projects" class="hero-cta">Voir les projets →</a>
+    </div>
+  </div>
+</section>
+
+<section id="about" class="about">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="s-num">01</span>
+      <h2 class="s-title">À propos</h2>
+    </div>
+    <div class="about-grid">
+      <div class="about-text">
+        <p>Développeur passionné, actuellement en <strong>stage</strong>, je cherche une <strong>alternance</strong> en informatique — développement web, réseaux et systèmes — pour continuer à progresser dans un environnement professionnel stimulant.</p>
+        <p>J'aime construire des solutions web modernes, fonctionnelles et esthétiques. Mon parcours m'a permis de découvrir différentes technologies et de développer des projets concrets qui répondent à des besoins réels.</p>
+      </div>
+      <div class="about-facts">
+        <div class="about-fact">
+          <span class="fact-label">Statut</span>
+          <span class="fact-value">En stage · Cherche alternance</span>
         </div>
-        <div class="nav-links">
-            <a href="#about">À propos</a>
-            <a href="#projects">Projets</a>
-            <a href="#skills">Compétences</a>
-            <a href="#contact">Contact</a>
+        <div class="about-fact">
+          <span class="fact-label">Localisation</span>
+          <span class="fact-value">Angers, France</span>
         </div>
-        <div class="nav-social">
-            <a href="https://github.com/aGgm0" target="_blank" aria-label="GitHub" class="social-link">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
-                </svg>
-            </a>
-            <a href="https://www.linkedin.com/in/alexandre-pelaprat-flore/" target="_blank" aria-label="LinkedIn" class="social-link">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
-                    <rect x="2" y="9" width="4" height="12"></rect>
-                    <circle cx="4" cy="4" r="2"></circle>
-                </svg>
-            </a>
+        <div class="about-fact">
+          <span class="fact-label">Projets</span>
+          <span class="fact-value">4 réalisés</span>
         </div>
-    </nav>
-
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-content">
-            <div class="terminal-window">
-                <div class="terminal-header">
-                    <span class="terminal-dot"></span>
-                    <span class="terminal-dot"></span>
-                    <span class="terminal-dot"></span>
-                </div>
-                <div class="terminal-body">
-                    <p class="terminal-line"><span class="prompt">$</span> whoami</p>
-                    <p class="terminal-line output">Développeur Web Full-Stack</p>
-                    <p class="terminal-line"><span class="prompt">$</span> cat skills.txt</p>
-                    <p class="terminal-line output">Développement Web • PWA • WordPress</p>
-                    <p class="terminal-line"><span class="prompt">$</span> echo $STATUS</p>
-                    <p class="terminal-line output glow">En stage | Recherche alternance</p>
-                    <p class="terminal-line"><span class="prompt blinking-cursor">$</span></p>
-                </div>
-            </div>
-            <div class="hero-text">
-                <h1 class="hero-title">
-                    <span class="title-line">Alexandre</span>
-                    <span class="title-line">Pelaprat Flore</span>
-                </h1>
-                <p class="hero-subtitle">Développeur Web Full-Stack</p>
-                <a href="#contact" class="cta-button">
-                    <span>Me contacter</span>
-                    <span class="arrow">→</span>
-                </a>
-            </div>
+        <div class="about-fact">
+          <span class="fact-label">Disponibilité</span>
+          <span class="fact-value">Dès maintenant</span>
         </div>
-        <div class="scroll-indicator">
-            <span>Scroll</span>
-            <div class="scroll-line"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="projects" class="projects">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="s-num">02</span>
+      <h2 class="s-title">Projets</h2>
+    </div>
+
+    <div class="project-item">
+      <div class="proj-num">01</div>
+      <div class="proj-info">
+        <div class="proj-title">Application Mala</div>
+        <p class="proj-desc">Application web progressive développée pour un projet académique. Fonctionne hors ligne, crée pour le mobile.</p>
+        <div class="proj-tags">
+          <span class="tag">PWA</span>
+          <span class="tag">JavaScript</span>
+          <span class="tag">HTML/CSS</span>
         </div>
-    </section>
+        <a href="https://mala-lyart.vercel.app/" target="_blank" class="proj-link">Voir l'app →</a>
+      </div>
+    </div>
 
-    <!-- About Section -->
-    <section id="about" class="section about">
-        <div class="container">
-            <div class="section-header" data-aos="fade-up">
-                <span class="section-number">01</span>
-                <h2 class="section-title">À propos</h2>
-            </div>
-            <div class="about-content" data-aos="fade-up" data-aos-delay="100">
-                <div class="about-text">
-                    <p class="lead">Développeur passionné en quête de nouvelles opportunités pour apprendre et créer.</p>
-                    <p>Actuellement en <strong>stage</strong>, je cherche une <strong>alternance</strong> en informatique — développement web, réseaux et systèmes — pour continuer à progresser dans un environnement professionnel stimulant.</p>
-                    <p>J'aime construire des solutions web modernes, fonctionnelles et esthétiques. Mon parcours m'a permis de découvrir différentes technologies et de développer des projets concrets qui répondent à des besoins réels.</p>
-                </div>
-                <div class="about-stats">
-                    <div class="stat-card" data-aos="zoom-in" data-aos-delay="200">
-                        <div class="stat-number">4+</div>
-                        <div class="stat-label">Projets réalisés</div>
-                    </div>
-                    <div class="stat-card" data-aos="zoom-in" data-aos-delay="300">
-                        <div class="stat-number">100%</div>
-                        <div class="stat-label">Motivation</div>
-                    </div>
-                    <div class="stat-card" data-aos="zoom-in" data-aos-delay="400">
-                        <div class="stat-number">∞</div>
-                        <div class="stat-label">Curiosité</div>
-                    </div>
-                </div>
-            </div>
+    <div class="project-item">
+      <div class="proj-num">02</div>
+      <div class="proj-info">
+        <div class="proj-title">Polyworld</div>
+        <p class="proj-desc">Application web interactive déployée sur Firebase, avec une architecture moderne et une expérience utilisateur soignée.</p>
+        <div class="proj-tags">
+          <span class="tag">Firebase</span>
+          <span class="tag">JavaScript</span>
+          <span class="tag">HTML/CSS</span>
         </div>
-    </section>
+        <a href="https://polyworld-59bb5.web.app/" target="_blank" class="proj-link">Voir le projet →</a>
+      </div>
+    </div>
 
-    <!-- Projects Section -->
-    <section id="projects" class="section projects">
-        <div class="container">
-            <div class="section-header" data-aos="fade-up">
-                <span class="section-number">02</span>
-                <h2 class="section-title">Projets</h2>
-            </div>
-            <div class="projects-grid">
-                <!-- Project 1 -->
-                <article class="project-card" data-aos="fade-up" data-aos-delay="100">
-                    <div class="project-image">
-                        <img src="images_opti/projet-wordpress.webp" alt="Projet WordPress">
-                    </div>
-                    <div class="project-content">
-                        <div class="project-tags">
-                            <span class="tag">WordPress</span>
-                        </div>
-                        <h3 class="project-title">Site WordPress</h3>
-                        <p class="project-description">Création d'un site web complet sous WordPress avec le thème elementor, gestion de contenu dynamique et optimisation SEO.</p>
-                        <div class="project-links">
-                            <a href="https://alexandre-pelapratflore.mds-angers.yt" class="project-link" target="_blank">
-                                <span>Voir le projet</span>
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-                                    <polyline points="15 3 21 3 21 9"></polyline>
-                                    <line x1="10" y1="14" x2="21" y2="3"></line>
-                                </svg>
-                            </a>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- Project 2 -->
-                <article class="project-card featured" data-aos="fade-up" data-aos-delay="200">
-                    <div class="project-image">
-                        <img src="images_opti/projet-pwa.webp" alt="Application PWA">
-                        <div class="featured-badge">Featured</div>
-                    </div>
-                    <div class="project-content">
-                        <div class="project-tags">
-                            <span class="tag">PWA</span>
-                            <span class="tag">JavaScript</span>
-                            <span class="tag">HTML/CSS</span>
-                        </div>
-                        <h3 class="project-title">Application PWA Partiel</h3>
-                        <p class="project-description">Application web progressive développée pour un projet académique. Fonctionne hors ligne, installable sur mobile et desktop, avec une interface moderne et responsive.</p>
-                        <div class="project-links">
-                            <a href="https://mala-lyart.vercel.app/" class="project-link" target="_blank">
-                                <span>Voir l'app</span>
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-                                    <polyline points="15 3 21 3 21 9"></polyline>
-                                    <line x1="10" y1="14" x2="21" y2="3"></line>
-                                </svg>
-                            </a>
-                            <a href="https://github.com/aGgm0/mala" class="project-link" target="_blank">
-                                <span>GitHub</span>
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
-                                </svg>
-                            </a>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- Project 3 -->
-                <article class="project-card" data-aos="fade-up" data-aos-delay="300">
-                    <div class="project-image">
-                        <img src="images_opti/uncoeurenvert.webp" alt="Un Coeur en Vert">
-                    </div>
-                    <div class="project-content">
-                        <div class="project-tags">
-                            <span class="tag">HTML/CSS</span>
-                            <span class="tag">JavaScript</span>
-                        </div>
-                        <h3 class="project-title">Un Coeur en Vert</h3>
-                        <p class="project-description">Site web réalisé pour une association, avec une interface claire et accessible pour présenter leurs activités et engagements.</p>
-                    </div>
-                </article>
-
-                <!-- Project 4 -->
-                <article class="project-card" data-aos="fade-up" data-aos-delay="400">
-                    <div class="project-image">
-                        <img src="images_opti/polyworld.webp" alt="Polyworld">
-                    </div>
-                    <div class="project-content">
-                        <div class="project-tags">
-                            <span class="tag">Firebase</span>
-                            <span class="tag">JavaScript</span>
-                            <span class="tag">HTML/CSS</span>
-                        </div>
-                        <h3 class="project-title">Polyworld</h3>
-                        <p class="project-description">Application web interactive déployée sur Firebase. Projet développé avec une architecture moderne et une expérience utilisateur soignée.</p>
-                        <div class="project-links">
-                            <a href="https://polyworld-59bb5.web.app/" class="project-link" target="_blank">
-                                <span>Voir le projet</span>
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-                                    <polyline points="15 3 21 3 21 9"></polyline>
-                                    <line x1="10" y1="14" x2="21" y2="3"></line>
-                                </svg>
-                            </a>
-                        </div>
-                    </div>
-                </article>
-            </div>
+    <div class="project-item">
+      <div class="proj-num">03</div>
+      <div class="proj-info">
+        <div class="proj-title">Site WordPress</div>
+        <p class="proj-desc">Création d'un site web complet sous WordPress avec Elementor, gestion de contenu dynamique et optimisation SEO.</p>
+        <div class="proj-tags">
+          <span class="tag">WordPress</span>
+          <span class="tag">Elementor</span>
+          <span class="tag">SEO</span>
         </div>
-    </section>
+        <a href="https://alexandre-pelapratflore.mds-angers.yt" target="_blank" class="proj-link">Voir le site →</a>
+      </div>
+    </div>
 
-    <!-- Skills Section -->
-    <section id="skills" class="section skills">
-        <div class="container">
-            <div class="section-header" data-aos="fade-up">
-                <span class="section-number">03</span>
-                <h2 class="section-title">Compétences</h2>
-            </div>
-            
-            <div class="skills-container" data-aos="fade-up" data-aos-delay="100">
-                <div class="skills-orbit">
-                    <!-- Frontend -->
-                    <div class="skill-logo" data-skill="HTML5">
-                        <img src="https://cdn.simpleicons.org/html5/E34F26" alt="HTML5" class="skill-icon">
-                        <span>HTML5</span>
-                    </div>
-                    
-                    <div class="skill-logo" data-skill="CSS3">
-                        <img src="https://cdn.simpleicons.org/css/1572B6" alt="CSS3" class="skill-icon" style="filter: brightness(1.2);">
-                        <span>CSS3</span>
-                    </div>
-                    
-                    <div class="skill-logo" data-skill="JavaScript">
-                        <img src="https://cdn.simpleicons.org/javascript/F7DF1E" alt="JavaScript" class="skill-icon">
-                        <span>JavaScript</span>
-                    </div>
-
-                    <!-- Backend & Languages -->
-                    <div class="skill-logo" data-skill="Python">
-                        <img src="https://cdn.simpleicons.org/python/3776AB" alt="Python" class="skill-icon">
-                        <span>Python</span>
-                    </div>
-                    
-                    <div class="skill-logo" data-skill="MySQL">
-                        <img src="https://cdn.simpleicons.org/mysql/4479A1" alt="MySQL" class="skill-icon">
-                        <span>MySQL</span>
-                    </div>
-
-                    <!-- CMS & Tools -->
-                    <div class="skill-logo" data-skill="WordPress">
-                        <img src="https://cdn.simpleicons.org/wordpress/21759B" alt="WordPress" class="skill-icon">
-                        <span>WordPress</span>
-                    </div>
-                    
-                    <div class="skill-logo" data-skill="GitHub">
-                        <img src="https://cdn.simpleicons.org/github/FFFFFF" alt="GitHub" class="skill-icon">
-                        <span>GitHub</span>
-                    </div>
-                    
-                    <div class="skill-logo" data-skill="PWA">
-                        <img src="https://cdn.simpleicons.org/pwa/5A0FC8" alt="PWA" class="skill-icon">
-                        <span>PWA</span>
-                    </div>
-                    <div class="skill-logo" data-skill="PHP">
-                        <img src="https://cdn.simpleicons.org/php/777BB4" alt="PHP" class="skill-icon">
-                        <span>PHP</span>
-                    </div>
-                </div>
-                
-                <div class="skills-legend">
-                    <p>Technologies & Outils maîtrisés</p>
-                </div>
-            </div>
+    <div class="project-item">
+      <div class="proj-num">04</div>
+      <div class="proj-info">
+        <div class="proj-title">Un Cœur en Vert</div>
+        <p class="proj-desc">Site web réalisé pour une association, avec une interface claire et accessible pour présenter leurs activités et engagements.</p>
+        <div class="proj-tags">
+          <span class="tag">HTML/CSS</span>
+          <span class="tag">JavaScript</span>
         </div>
-    </section>
+      </div>
+    </div>
 
-    <!-- Contact Section -->
-    <section id="contact" class="section contact">
-        <div class="container">
-            <div class="section-header" data-aos="fade-up">
-                <span class="section-number">04</span>
-                <h2 class="section-title">Contact</h2>
-            </div>
-            <div class="contact-content" data-aos="fade-up" data-aos-delay="100">
-                <div class="contact-text">
-                    <h3 class="contact-heading">Discutons :</h3>
-                    <p class="contact-description">Actuellement en stage, je recherche une alternance en informatique. N'hésitez pas à me contacter pour échanger !</p>
-                    <div class="contact-info">
-                        <a href="mailto:alex.pelapratflore@gmail.com" class="contact-link email-link">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-                                <polyline points="22,6 12,13 2,6"></polyline>
-                            </svg>
-                                <span id="email-display"></span>
+  </div>
+</section>
 
-                        <div class="contact-social">
-                            <a href="https://github.com/aGgm0" target="_blank" class="social-button">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
-                                </svg>
-                                <span>GitHub</span>
-                            </a>
-                            <a href="https://www.linkedin.com/in/alexandre-pelaprat-flore/" target="_blank" class="social-button">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
-                                    <rect x="2" y="9" width="4" height="12"></rect>
-                                    <circle cx="4" cy="4" r="2"></circle>
-                                </svg>
-                                <span>LinkedIn</span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="contact-cv">
-                    <div class="cv-card">
-                        <div class="cv-icon">
-                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-                                <polyline points="14 2 14 8 20 8"></polyline>
-                                <line x1="16" y1="13" x2="8" y2="13"></line>
-                                <line x1="16" y1="17" x2="8" y2="17"></line>
-                                <polyline points="10 9 9 9 8 9"></polyline>
-                            </svg>
-                        </div>
-                        <h4 class="cv-title">Mon CV</h4>
-                        <p class="cv-description">Téléchargez mon CV pour en savoir plus sur mon parcours</p>
-                        <a href="./CV Alternance 86.pdf" download class="cv-download-btn">
-                            <span>Télécharger le CV</span>
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-                                <polyline points="7 10 12 15 17 10"></polyline>
-                                <line x1="12" y1="15" x2="12" y2="3"></line>
-                            </svg>
-                        </a>
-                    </div>
-                </div>
-            </div>
+<section id="skills" class="skills">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="s-num">03</span>
+      <h2 class="s-title">Compétences</h2>
+    </div>
+    <div class="skills-grid">
+      <span class="skill">HTML5</span>
+      <span class="skill">CSS3</span>
+      <span class="skill">JavaScript</span>
+      <span class="skill">PHP</span>
+      <span class="skill">Python</span>
+      <span class="skill">MySQL</span>
+      <span class="skill">WordPress</span>
+      <span class="skill">PWA</span>
+      <span class="skill">Firebase</span>
+      <span class="skill">GitHub</span>
+      <span class="skill">Responsive Design</span>
+      <span class="skill">SEO</span>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="contact">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="s-num">04</span>
+      <h2 class="s-title">Contact</h2>
+    </div>
+    <div class="contact-grid">
+      <div>
+        <div class="contact-heading">Travaillons<br><span>ensemble.</span></div>
+        <div class="contact-row">
+          <span class="c-label">Email</span>
+          <a href="/cdn-cgi/l/email-protection#70111c15085e00151c1100021104161c1f021530171d11191c5e131f1d" class="c-val"><span class="__cf_email__" data-cfemail="53323f362b7d23363f3223213227353f3c213613343e323a3f7d303c3e">[email&#160;protected]</span></a>
         </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                    <p class="footer-text">Conçu et développé par Alexandre Pelaprat Flore</p>
-                <p class="footer-copyright">© 2026 Tous droits réservés</p>
-            </div>
+        <div class="contact-row">
+          <span class="c-label">GitHub</span>
+          <a href="https://github.com/aGgm0" target="_blank" class="c-val">github.com/aGgm0</a>
         </div>
-    </footer>
+        <div class="contact-row">
+          <span class="c-label">LinkedIn</span>
+          <a href="https://www.linkedin.com/in/alexandre-pelaprat-flore/" target="_blank" class="c-val">alexandre-pelaprat-flore</a>
+        </div>
+      </div>
+      <div class="cv-box">
+        <div class="cv-box-title">Mon CV</div>
+        <p class="cv-desc">Téléchargez mon CV pour en savoir plus sur mon parcours, mes formations et mes expériences.</p>
+        <a href="./CV Alternance 86.pdf" download class="cv-btn">Télécharger le CV ↓</a>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <!-- Scripts -->
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script src="script.js"></script>
-</body>
+<footer>
+  <span>Alexandre Pelaprat Flore</span>
+  <span>© 2025 — Tous droits réservés</span>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js" defer></script></body>
 </html>
