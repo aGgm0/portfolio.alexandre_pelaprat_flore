@@ -161,7 +161,7 @@
 
 <section class="hero" id="top">
   <div class="hero-pre">Alexandre Pelaprat Flore — Portfolio 2026</div>
-  <div class="hero-name">Développeur<br>Web / Full-Stack</div>
+  <div class="hero-name" id="hero-typed"></div>
   <div class="hero-rule"></div>
   <div class="hero-bottom" style="justify-content:center">
     <div style="text-align:center">
@@ -329,10 +329,64 @@
 
 
 
+<style>
+  .cursor { color: var(--accent); font-weight: 900; }
+  .cursor.blink { animation: blink 1s step-end infinite; }
+  @keyframes blink { 50% { opacity: 0; } }
+  .s-title { opacity: 0; }
+  .s-title.typed { opacity: 1; }
+</style>
 <script>
   var u='alex.pelapratflore';var d='gmail.com';
   var el=document.getElementById('email-link');
   el.href='mailto:'+u+'@'+d;
   el.textContent=u+'@'+d;
+</script><script>
+  function delay(ms) { return new Promise(r => setTimeout(r, ms)); }
+
+  // Hero typewriter
+  async function typeHero() {
+    const lines = ['Développeur', 'Web / Full-Stack'];
+    const el = document.getElementById('hero-typed');
+    for (let i = 0; i < lines.length; i++) {
+      const line = lines[i];
+      for (let c = 0; c < line.length; c++) {
+        el.innerHTML = lines.slice(0, i).join('<br>') + (i > 0 ? '<br>' : '') + line.slice(0, c + 1) + '<span class="cursor">▌</span>';
+        await delay(48);
+      }
+      if (i < lines.length - 1) await delay(320);
+    }
+    el.innerHTML = lines.join('<br>') + '<span class="cursor blink">▌</span>';
+  }
+  typeHero();
+
+  // Section title typewriter — déclenché par IntersectionObserver
+  async function typeTitle(el) {
+    const text = el.dataset.text;
+    el.classList.add('typed');
+    el.textContent = '';
+    for (let c = 0; c < text.length; c++) {
+      el.innerHTML = text.slice(0, c + 1) + '<span class="cursor">▌</span>';
+      await delay(38);
+    }
+    el.innerHTML = text + '<span class="cursor blink">▌</span>';
+    // Arrêt du curseur après 2s
+    await delay(2000);
+    el.textContent = text;
+  }
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        observer.unobserve(entry.target);
+        typeTitle(entry.target);
+      }
+    });
+  }, { threshold: 0.6 });
+
+  document.querySelectorAll('.s-title').forEach(el => {
+    el.dataset.text = el.textContent.trim();
+    observer.observe(el);
+  });
 </script>
 </body></html>
