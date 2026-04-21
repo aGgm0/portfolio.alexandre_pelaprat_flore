@@ -302,7 +302,7 @@
         <div class="contact-heading">Travaillons<br><span>ensemble.</span></div>
         <div class="contact-row">
           <span class="c-label">Email</span>
-          <a href="/cdn-cgi/l/email-protection#244548415c0a544148455456455042484b5641644349454d480a474b49" class="c-val"><span class="__cf_email__" data-cfemail="b3d2dfd6cb9dc3d6dfd2c3c1d2c7d5dfdcc1d6f3d4ded2dadf9dd0dcde">[email&#160;protected]</span></a>
+          <a href="#" id="email-link" class="c-val">chargement...</a>
         </div>
         <div class="contact-row">
           <span class="c-label">GitHub</span>
@@ -329,4 +329,10 @@
 
 
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script></body></html>
+<script>
+  var u='alex.pelapratflore';var d='gmail.com';
+  var el=document.getElementById('email-link');
+  el.href='mailto:'+u+'@'+d;
+  el.textContent=u+'@'+d;
+</script>
+</body></html>
